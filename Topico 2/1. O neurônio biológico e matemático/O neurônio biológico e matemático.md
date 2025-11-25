@@ -1,0 +1,1 @@
+https://www.deeplearningbook.com.br/o-neuronio-biologico-e-matematico/

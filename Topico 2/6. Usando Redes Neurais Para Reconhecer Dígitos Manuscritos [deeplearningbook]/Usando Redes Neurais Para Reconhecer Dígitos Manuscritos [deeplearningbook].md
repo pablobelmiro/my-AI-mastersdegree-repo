@@ -1,0 +1,1 @@
+https://www.deeplearningbook.com.br/usando-redes-neurais-para-reconhecer-digitos-manuscritos/

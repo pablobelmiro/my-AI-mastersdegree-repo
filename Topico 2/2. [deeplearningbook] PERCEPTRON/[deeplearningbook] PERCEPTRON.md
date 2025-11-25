@@ -1,0 +1,1 @@
+https://www.deeplearningbook.com.br/o-perceptron-parte-1/

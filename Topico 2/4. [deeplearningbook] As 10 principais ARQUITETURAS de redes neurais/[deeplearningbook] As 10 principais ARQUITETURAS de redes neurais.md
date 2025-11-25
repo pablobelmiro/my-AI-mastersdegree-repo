@@ -1,0 +1,1 @@
+https://www.deeplearningbook.com.br/as-10-principais-arquiteturas-de-redes-neurais/
