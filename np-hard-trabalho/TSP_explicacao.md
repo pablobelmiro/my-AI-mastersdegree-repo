@@ -35,34 +35,34 @@ graph TD
 
 ```mermaid
 graph TD
-    SA_Start[Início SA] --> SA_Init[Gerar Solução Inicial Aleatória]
+    SA_Start[Inicio SA] --> SA_Init[Gerar Solucao Inicial Aleatoria]
     SA_Init --> SA_Temp[Definir Temperatura Inicial]
-    SA_Temp --> SA_Loop{Ainda há iterações?}
+    SA_Temp --> SA_Loop{Ha iteracoes restantes?}
     
-    SA_Loop -->|Sim| SA_Nrep{nrep concluído?}
-    SA_Loop -->|Não| SA_Return[Retornar Melhor Rota e Histórico]
+    SA_Loop -->|Sim| SA_Nrep{nrep terminou?}
+    SA_Loop -->|Nao| SA_Return[Retornar Melhor Rota e Historico]
 
-    SA_Nrep -->|Não| SA_Neigh[Gerar Vizinho - Troca 2 Cidades]
-    SA_Nrep -->|Sim| SA_Cool[Resfriar: T = T * alpha]
+    SA_Nrep -->|Nao| SA_Neigh[Gerar Vizinho - Troca 2 Cidades]
+    SA_Nrep -->|Sim| SA_Cool[Resfriar Temperatura]
 
     SA_Neigh --> SA_Calc[Calcular Delta E]
-    SA_Calc --> SA_Accept{Delta E &lt; 0?}
+    SA_Calc --> SA_Accept{Delta E negativo?}
 
-    SA_Accept -->|Sim| SA_Update[Atualizar Solução Atual]
-    SA_Accept -->|Não| SA_Prob{Rand &lt; Prob(Delta,T)?}
+    SA_Accept -->|Sim| SA_Update[Atualizar Solucao Atual]
+    SA_Accept -->|Nao| SA_Prob{Aceitar por probabilidade?}
 
     SA_Prob -->|Sim| SA_Update
-    SA_Prob -->|Não| SA_Keep[Manter Solução Atual]
+    SA_Prob -->|Nao| SA_Keep[Manter Solucao Atual]
 
-    SA_Update --> SA_Best{Melhor Global?}
+    SA_Update --> SA_Best{Melhor que global?}
     SA_Keep --> SA_Nrep
 
     SA_Best -->|Sim| SA_SaveBest[Atualizar Melhor]
-    SA_Best -->|Não| SA_Nrep
+    SA_Best -->|Nao| SA_Nrep
 
     SA_SaveBest --> SA_Nrep
 
-    SA_Cool --> SA_Hist[Salvar Histórico]
+    SA_Cool --> SA_Hist[Salvar Historico]
     SA_Hist --> SA_Loop
 ```
 
