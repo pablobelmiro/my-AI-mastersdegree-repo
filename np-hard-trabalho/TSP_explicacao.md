@@ -37,23 +37,33 @@ graph TD
 graph TD
     SA_Start[Início SA] --> SA_Init[Gerar Solução Inicial Aleatória]
     SA_Init --> SA_Temp[Definir Temperatura Inicial]
-    SA_Temp --> SA_Loop{Loop: Iterações}
-    SA_Loop -->|Sim| SA_Nrep{Loop: nrep vezes}
-    SA_Nrep -->|Sim| SA_Neigh[Gerar Vizinho - Troca 2 Cidades]
+    SA_Temp --> SA_Loop{Ainda há iterações?}
+    
+    SA_Loop -->|Sim| SA_Nrep{nrep concluído?}
+    SA_Loop -->|Não| SA_Return[Retornar Melhor Rota e Histórico]
+
+    SA_Nrep -->|Não| SA_Neigh[Gerar Vizinho - Troca 2 Cidades]
+    SA_Nrep -->|Sim| SA_Cool[Resfriar: T = T * alpha]
+
     SA_Neigh --> SA_Calc[Calcular Delta E - Variação Distância]
-    SA_Calc --> SA_Accept{Aceitar?}
-    SA_Accept -->|Delta E < 0| SA_Update[Atualizar Solução Atual]
-    SA_Accept -->|Delta E > 0| SA_Prob{Rand < Prob(Delta, T)}
+    SA_Calc --> SA_Accept{Delta E < 0?}
+
+    SA_Accept -->|Sim| SA_Update[Atualizar Solução Atual]
+    SA_Accept -->|Não| SA_Prob{Rand < Prob(Delta, T)?}
+
     SA_Prob -->|Sim| SA_Update
-    SA_Prob -->|Não| SA_Keep[Manter Anterior]
+    SA_Prob -->|Não| SA_Keep[Manter Solução Atual]
+
     SA_Update --> SA_Best{Melhor Global?}
     SA_Keep --> SA_Nrep
+
     SA_Best -->|Sim| SA_SaveBest[Atualizar Melhor]
     SA_Best -->|Não| SA_Nrep
-    SA_Nrep -->|Fim Nrep| SA_Cool[Resfriar: T = T * alpha]
+
+    SA_SaveBest --> SA_Nrep
+
     SA_Cool --> SA_Hist[Salvar Histórico]
     SA_Hist --> SA_Loop
-    SA_Loop -->|Fim| SA_Return[Retornar Melhor Rota e Histórico]
 ```
 
 ### Fluxo do Algoritmo Genético (GA)
