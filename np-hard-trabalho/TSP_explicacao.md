@@ -45,11 +45,11 @@ graph TD
     SA_Nrep -->|Não| SA_Neigh[Gerar Vizinho - Troca 2 Cidades]
     SA_Nrep -->|Sim| SA_Cool[Resfriar: T = T * alpha]
 
-    SA_Neigh --> SA_Calc[Calcular Delta E - Variação Distância]
-    SA_Calc --> SA_Accept{Delta E < 0?}
+    SA_Neigh --> SA_Calc[Calcular Delta E]
+    SA_Calc --> SA_Accept{Delta E &lt; 0?}
 
     SA_Accept -->|Sim| SA_Update[Atualizar Solução Atual]
-    SA_Accept -->|Não| SA_Prob{Rand < Prob(Delta, T)?}
+    SA_Accept -->|Não| SA_Prob{Rand &lt; Prob(Delta,T)?}
 
     SA_Prob -->|Sim| SA_Update
     SA_Prob -->|Não| SA_Keep[Manter Solução Atual]
