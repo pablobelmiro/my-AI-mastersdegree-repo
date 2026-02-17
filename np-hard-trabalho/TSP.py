@@ -1,8 +1,9 @@
-#################### NEWWWWWWWWW ####################
 #################### FUNÇÕES PLOTAGEM GRÁFICO SIMULATED ANNEALING ####################
-from IPython.display import clear_output
 import matplotlib.pyplot as plt
 import plotly.graph_objects as go
+import pandas as pd
+import numpy as np
+import seaborn as sns
 
 def plot_path(cities_xy, cities_path, ax):
 
@@ -80,7 +81,7 @@ def plot_axes_figure(cities_xy, cities_path, iteration_list,
     y3 = accept_p_list
     y4 = temperat_list
 
-    clear_output(wait=True)
+    # clear_output(wait=True)
 
     fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, figsize=(12,8))
 
@@ -140,6 +141,9 @@ def boxplot_sorted(df, rot=90, figsize=(12,6), fontsize=20, algoritmo=""):
     plt.tight_layout()
 
 def plota_rotas(df_cidades, ordem_cidades, algoritmo=""):
+    if go is None:
+        print(f"Aviso: Plotly não instalado. Pulando visualização interativa para {algoritmo}.")
+        return
     if not isinstance(df_cidades, pd.DataFrame):
         df_cidades = pd.DataFrame(df_cidades, columns=['X', 'Y'])
     
@@ -315,7 +319,20 @@ def simulated_annealing(cities, initial_temperature, cooling_rate, iterations, n
         #                     accept_p_list, temperat_list)
 
     plt.show()
-    return best_route, best_distance
+    # Retorna o histórico formatado para o estudo comparativo
+    fit_history = [{"Step": it * nrep, "Fitness": dist, "Algorithm": "SA"} 
+                   for it, dist in zip(iteration_list, best_distances)]
+    
+    # Adicionado: dados extras para plotagem detalhada do SA
+    extra_plots_data = {
+        "iteration_list": iteration_list,
+        "distance_list": distance_list,
+        "best_distances": best_distances,
+        "accept_p_list": accept_p_list,
+        "temperat_list": temperat_list
+    }
+    
+    return best_route, best_distance, fit_history, extra_plots_data
 
 
 #---------- Get TSP dataset
@@ -363,52 +380,50 @@ def run_simulated_annealing(dataset_name):
     nrep = 20 #total_calls // iterations
     
     print(f"Iniciando SA para {dataset_name}: {num_cities} cidades, Iters={iterations}, Nrep={nrep}...")
-    best_route, best_distance = simulated_annealing(cities, 
+    best_route, best_distance, fit_history, extra_plots_data = simulated_annealing(cities, 
                                                     initial_temperature=1000.0, 
                                                     cooling_rate=0.9997, 
                                                     iterations=iterations,
                                                     nrep=nrep)
 
     print("SA Best distance:", best_distance)
-    return best_route, best_distance
-
-#################### EXECUÇÃO SIMULATED ANNEALING ####################
-datasets = ['wi29']
-    
-print("Iniciando processamento em lote...")
-best_route_tsp_sa = []
-best_distance_tsp_sa = []
-for ds in datasets:
-    try:
-       best_route_tsp_sa, best_distance_tsp_sa = run_simulated_annealing(dataset_name=ds)
-    except Exception as e:
-        print(f"Erro crítico ao processar {ds}: {e}")
-
-#################### MELHOR ROTA SIMULATED ANNEALING ####################
-print("Melhor caminho:")
-plota_rotas(get_tsp_data('wi29'), best_route_tsp_sa, "Simulated Annealing")
-print("\n")
-
-#################### BOXPLOT SIMULATED ANNEALING ####################
-print("boxplot_sorted:")
-boxplot_sorted(df=best_route_tsp_sa, algoritmo="Simulated Annealing")
-print("\n")
-
-#################### TABELA SIMULATED ANNEALING ####################
-print("Representação do Estado (Figura 4):")
-df_estado = pd.DataFrame([best_route_tsp_sa])
-print(df_estado.to_string(index=False, header=False))
-
-print("\nTabela com dados SA (Resumo dos Trechos):")
-# Utiliza a rota atual para calcular estatísticas dos segmentos (trechos)
-cities_xy = get_tsp_data(datasets[0])
-dists_sa = [np.linalg.norm(cities_xy[best_route_tsp_sa[i]] - cities_xy[best_route_tsp_sa[(i+1)%len(best_route_tsp_sa)]]) for i in range(len(best_route_tsp_sa))]
-df_custo = pd.DataFrame({'Simulated Annealing (Segmentos)': dists_sa})
-print(df_custo.describe().rename(index={'mean': 'Méd', '50%': 'Mediana', 'std': 'Std', '25%': 'Q1 (25%)', '75%': 'Q3 (75%)', 'min': 'Mín', 'max': 'Máx'}))
-print("\n")
+    return best_route, best_distance, fit_history, extra_plots_data
 
 
-#################### NEWWWWW ####################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #################### FUNÇÕES PLOTAGEM GRÁFICO GENETIC ALGORITHM ####################
 def plot_ga_path(cities_xy, cities_path, ax):
     ax.clear()
@@ -476,7 +491,7 @@ def plot_ga_figure(cities_xy, best_route, best_fitness_history, std_fitness_hist
     plot_ga_diversity(std_fitness_history, ax3)
     plot_ga_landscape(current_aptidoes, ax4)
     fig.tight_layout()
-    plt.show()
+    # plt.show() # Removido para evitar paradas em lote
 
 #################### GENETIC ALGORITHM ####################
 def gera_individuo(num_cities):
@@ -583,7 +598,19 @@ def algoritmo_genetico(cities, distance_matrix, tam_pop=100, num_geracoes=1000, 
         #                    best_fitness_history, std_fitness_history, aptidoes)
             
 
-    return best_route, best_distance
+    # Retorna o histórico formatado para o estudo comparativo
+    # Sincroniza passos com SA: tam_pop avaliações por geração
+    fit_history = [{"Step": gen * tam_pop, "Fitness": dist, "Algorithm": "GA"} 
+                   for gen, dist in enumerate(best_fitness_history)]
+    
+    # Adicionado: dados extras para plotagem detalhada do GA
+    extra_plots_data = {
+        "best_fitness_history": best_fitness_history,
+        "std_fitness_history": std_fitness_history,
+        "current_aptidoes": aptidoes
+    }
+    
+    return best_route, best_distance, fit_history, extra_plots_data
 
 def run_genetic_algorithm(dataset_name):
     """Função de execução do GA com parâmetros escalonados pelo número de cidades."""
@@ -597,7 +624,7 @@ def run_genetic_algorithm(dataset_name):
     num_geracoes = total_calls // tam_pop
     
     print(f"Iniciando GA para {dataset_name}: {num_cities} cidades, Pop={tam_pop}, Gen={num_geracoes}...")
-    best_route_partial, best_distance = algoritmo_genetico(cities, distance_matrix, 
+    best_route_partial, best_distance, fit_history, extra_plots_data = algoritmo_genetico(cities, distance_matrix, 
                                                            tam_pop=tam_pop, 
                                                            num_geracoes=num_geracoes,
                                                            mutation_rate=0.2)
@@ -606,42 +633,25 @@ def run_genetic_algorithm(dataset_name):
     best_route = np.insert(best_route_partial, 0, 0)
     print("GA Best route:", best_route)
     print("GA Best distance:", best_distance)
-    return best_route, best_distance
+    return best_route, best_distance, fit_history, extra_plots_data
 
-#################### EXECUÇÃO GENETIC ALGORITHM ####################
-datasets = ['wi29']
 
-best_route_tsp_ga = []
-best_distance_tsp_ga = []
 
-for ds in datasets:
-    try:
-        best_route_tsp_ga, best_distance_tsp_ga = run_genetic_algorithm(dataset_name=ds)
-    except Exception as e:
-        print(f"Erro crítico ao processar {ds}: {e}")
 
-#################### MELHOR ROTA GENETIC ALGORITHM ####################
-print("Melhor caminho:")
-plota_rotas(get_tsp_data('wi29'), best_route_tsp_ga, "Genetic Algorithm")
-print("\n")
 
-#################### BOXPLOT GENETIC ALGORITHM ####################
-print("boxplot_sorted:")
-boxplot_sorted(df=best_route_tsp_ga)
-print("\n") 
 
-#################### TABELA GENETIC ALGORITHM ####################
-print("Representação do Estado (Figura 4):")
-df_estado = pd.DataFrame([best_route_tsp_ga])
-print(df_estado.to_string(index=False, header=False))
 
-print("\nTabela com dados GA (Resumo dos Trechos):")
-# Utiliza a rota atual para calcular estatísticas dos segmentos (trechos)
-cities_xy = get_tsp_data(datasets[0])
-dists_ga = [np.linalg.norm(cities_xy[best_route_tsp_ga[i]] - cities_xy[best_route_tsp_ga[(i+1)%len(best_route_tsp_ga)]]) for i in range(len(best_route_tsp_ga))]
-df_custo = pd.DataFrame({'Genetic Algorithm (Segmentos)': dists_ga})
-print(df_custo.describe().rename(index={'mean': 'Méd', '50%': 'Mediana', 'std': 'Std', '25%': 'Q1 (25%)', '75%': 'Q3 (75%)', 'min': 'Mín', 'max': 'Máx'}))
-print("\n")
+
+
+
+
+
+
+
+
+
+
+
 
 #################### ESTUDO COMPARATIVO E AUTOMAÇÃO AVANÇADA ####################
 import json
@@ -652,20 +662,15 @@ import seaborn as sns
 def automacao_estudo(dataset_name, num_execs=20):
     """
     Executa um estudo comparativo avançado (SA vs GA).
-    Inclui curvas de média (Seaborn), comparação Inicial/Final (Fig 3 e 4) e logs JSON.
+    Inclui curvas de convergência (Seaborn), comparação Inicial/Final e logs JSON.
     """
     cities = get_tsp_data(dataset_name)
     num_cities = len(cities)
     distance_matrix, _ = generate_distance_matrix(cities)
-    total_calls_target = num_cities * 15000
     
-    # Parâmetros SA
-    sa_iters = num_cities * 500
-    sa_nrep = 20 #total_calls_target // sa_iters
-    
-    # Parâmetros GA
-    ga_pop = max(50, min(500, num_cities * 5))
-    ga_gens = total_calls_target // ga_pop
+    global RESULTADOS_SA, RESULTADOS_GA
+    RESULTADOS_SA, RESULTADOS_GA = [], []
+    HISTS_SA, HISTS_GA = [], []
     
     log_comparativo = {
         "dataset": dataset_name,
@@ -676,157 +681,168 @@ def automacao_estudo(dataset_name, num_execs=20):
 
     print(f"\nIniciando Estudo Comparativo Avançado: {dataset_name} ({num_execs} execuções)...")
     
-    sa_results, ga_results = [], []
-    sa_hists_df, ga_hists_df = [], []
-    
-    # Amostras para Figura 3 e 4 (primeira execução)
     sa_sample = {"inicial": None, "final": None}
     ga_sample = {"inicial": None, "final": None}
+
+    # Estado Inicial para Figura 3
+    init_route_rand = np.random.permutation(num_cities)
+    init_dist_rand = total_distance(init_route_rand, distance_matrix)
+    sa_sample["inicial"] = (init_route_rand.copy(), init_dist_rand)
+    
+    pop_init = gera_populacao_inicial(num_cities, max(50, min(500, num_cities * 5)))
+    init_ga_route = np.insert(pop_init[0], 0, 0)
+    ga_sample["inicial"] = (init_ga_route, fitness(pop_init[0], distance_matrix))
 
     for i in range(num_execs):
         print(f"Execução {i+1}/{num_execs}...", end="\r")
         
         # --- EXECUÇÃO SA ---
-        # Estado Inicial
-        init_route_sa = np.random.permutation(num_cities)
-        init_dist_sa = total_distance(init_route_sa, distance_matrix)
-        
-        if i == 0: sa_sample["inicial"] = (init_route_sa.copy(), init_dist_sa)
-        
-        curr_route_sa = init_route_sa.copy()
-        curr_dist_sa = init_dist_sa
-        best_route_sa = curr_route_sa.copy()
-        best_dist_sa = curr_dist_sa
-        
-        temp = 1000.0
-        calls_sa = 0
-        for it in range(sa_iters):
-            for _ in range(sa_nrep):
-                neighbor = generate_neighbor(curr_route_sa)
-                dist_n = total_distance(neighbor, distance_matrix)
-                calls_sa += 1
-                if dist_n < curr_dist_sa or random.random() < math.exp((curr_dist_sa - dist_n) / temp):
-                    curr_route_sa, curr_dist_sa = neighbor, dist_n
-                if curr_dist_sa < best_dist_sa:
-                    best_dist_sa, best_route_sa = curr_dist_sa, curr_route_sa.copy()
-            temp *= 0.9997
-            sa_hists_df.append({"Calls": calls_sa, "Fitness": best_dist_sa, "Algorithm": "SA"})
-        
-        if i == 0: sa_sample["final"] = (best_route_sa.copy(), best_dist_sa)
-        sa_results.append(best_dist_sa)
+        best_route_sa, best_dist_sa, hist_sa, extra_sa = run_simulated_annealing(dataset_name)
+        RESULTADOS_SA.append(best_dist_sa)
+        HISTS_SA.extend(hist_sa)
+        if i == 0: 
+            sa_sample["final"] = (best_route_sa, best_dist_sa)
+            sa_sample["extra"] = extra_sa
 
         # --- EXECUÇÃO GA ---
-        # Estado Inicial
-        pop = [gera_individuo(num_cities) for _ in range(ga_pop)]
-        apt = [fitness(ind, distance_matrix) for ind in pop]
-        calls_ga = ga_pop
-        
-        best_idx = np.argmin(apt)
-        best_dist_ga = apt[best_idx]
-        best_route_ga_p = pop[best_idx].copy()
-        
+        best_route_ga, best_dist_ga, hist_ga, extra_ga = run_genetic_algorithm(dataset_name)
+        RESULTADOS_GA.append(best_dist_ga)
+        HISTS_GA.extend(hist_ga)
         if i == 0: 
-            init_full_ga = np.insert(pop[0], 0, 0)
-            ga_sample["inicial"] = (init_full_ga, apt[0])
-            
-        ga_hists_df.append({"Calls": calls_ga, "Fitness": best_dist_ga, "Algorithm": "GA"})
-        
-        for gen in range(ga_gens):
-            nova_pop = [best_route_ga_p.copy()]
-            while len(nova_pop) < ga_pop:
-                p1, p2 = selecao_torneio(pop, apt), selecao_torneio(pop, apt)
-                nova_pop.append(mutation_swap(crossover_ox(p1, p2), 0.2))
-            pop = nova_pop
-            apt = [fitness(ind, distance_matrix) for ind in pop]
-            calls_ga += ga_pop
-            
-            b_gen_idx = np.argmin(apt)
-            if apt[b_gen_idx] < best_dist_ga:
-                best_dist_ga, best_route_ga_p = apt[b_gen_idx], pop[b_gen_idx].copy()
-            ga_hists_df.append({"Calls": calls_ga, "Fitness": best_dist_ga, "Algorithm": "GA"})
-            
-        if i == 0: 
-            final_full_ga = np.insert(best_route_ga_p, 0, 0)
-            ga_sample["final"] = (final_full_ga, best_dist_ga)
-        ga_results.append(best_dist_ga)
+            ga_sample["final"] = (best_route_ga, best_dist_ga)
+            ga_sample["extra"] = extra_ga
 
         log_comparativo["runs"].append({
-            "id": i + 1, 
+            "trial": i + 1, 
             "sa_cost": float(best_dist_sa), 
             "ga_cost": float(best_dist_ga)
         })
 
-    # Salva arquivo de log JSON
+        # plota_rotas(get_tsp_data(dataset_name), best_route_sa, "Simulated Annealing")
+        # plota_rotas(get_tsp_data(dataset_name), best_route_ga, "Genetic Algorithm")
+
+    # Salva log JSON
     fname = f"estudo_tsp_{dataset_name}_{int(time.time())}.json"
-    with open(fname, 'w') as f:
-        json.dump(log_comparativo, f, indent=4)
+    with open(fname, 'w') as f: json.dump(log_comparativo, f, indent=4)
     print(f"\nEstudo concluído! Log salvo em: {fname}")
 
     # --- RESULTADOS VISUAIS ---
+    display_config_comparison(num_cities)
+    plot_convergence_curves(HISTS_SA, HISTS_GA, dataset_name)
+    
     print("\nVisualizando Comparação Inicial vs Final (Figura 3 e 4)...")
     plot_comparacao_inicial_final(cities, sa_sample["inicial"], sa_sample["final"], "Simulated Annealing")
     plot_comparacao_inicial_final(cities, ga_sample["inicial"], ga_sample["final"], "Genetic Algorithm")
     
-    print("\nGerando Gráficos de Convergência...")
-    plot_convergencia_estatistica(sa_hists_df, ga_hists_df, dataset_name)
-    
     print("\nExibindo Resumo Estatístico Final...")
-    display_summary_comparison(sa_results, ga_results, dataset_name)
+    display_summary_comparison(RESULTADOS_SA, RESULTADOS_GA, dataset_name)
+    
+    print("\nVisualizando Distribuição de Resultados (Boxplot)...")
+    plot_boxplot_comparison(RESULTADOS_SA, RESULTADOS_GA, dataset_name)
+
+    print("\nVisualizando Métricas Detalhadas - Simulated Annealing (Primeira Execução)...")
+    plot_axes_figure(cities, sa_sample["final"][0], 
+                     sa_sample["extra"]["iteration_list"],
+                     sa_sample["extra"]["distance_list"],
+                     sa_sample["extra"]["best_distances"],
+                     sa_sample["extra"]["accept_p_list"],
+                     sa_sample["extra"]["temperat_list"])
+
+    print("\nVisualizando Métricas Detalhadas - Genetic Algorithm (Primeira Execução)...")
+    plot_ga_figure(cities, ga_sample["final"][0],
+                   ga_sample["extra"]["best_fitness_history"],
+                   ga_sample["extra"]["std_fitness_history"],
+                   ga_sample["extra"]["current_aptidoes"])
+    
+    plt.show()
+
+def plot_convergence_curves(sa_hists, ga_hists, dataset):
+    """Gráfico de Média com Intervalo de Variação (Chamadas à Função Objetivo)."""
+    df_total = pd.DataFrame(sa_hists + ga_hists)
+    plt.figure(figsize=(12, 6))
+    if sns is not None:
+        sns.lineplot(data=df_total, x="Step", y="Fitness", hue="Algorithm", estimator="mean", errorbar="sd")
+        plt.title(f"Curva de Convergência Média (Chamadas F.O.) - {dataset}", fontsize=14)
+    else:
+        for algo in ["SA", "GA"]:
+            df_algo = df_total[df_total["Algorithm"] == algo]
+            grouped = df_algo.groupby("Step")["Fitness"].agg(["mean", "std"])
+            plt.plot(grouped.index, grouped["mean"], label=f"{algo} (Méd)")
+            plt.fill_between(grouped.index, grouped["mean"] - grouped["std"], grouped["mean"] + grouped["std"], alpha=0.2)
+        plt.title(f"Convergência Média [Matplotlib Fallback] - {dataset}", fontsize=14)
+        plt.legend()
+
+    plt.xlabel("Chamadas à Função Objetivo / Iterações", fontsize=12)
+    plt.ylabel("Custo (Distância)", fontsize=12)
+    plt.grid(True, alpha=0.3)
+    plt.show()
+
+def plot_boxplot_comparison(sa_res, ga_res, dataset):
+    """Gera boxplot comparativo estilizado conforme referência (Figura 1)."""
+    # Preparação dos dados
+    data = [sa_res, ga_res]
+    labels = ['Simulated Annealing', 'Genetic Algorithm']
+    
+    plt.figure(figsize=(10, 7))
+    
+    # Estilização do Boxplot para casar com a imagem (azul com linha média vermelha)
+    box_props = dict(linestyle='-', linewidth=2, color='cornflowerblue')
+    whisker_props = dict(linestyle='-', linewidth=2, color='cornflowerblue')
+    capprops = dict(linestyle='-', linewidth=2, color='cornflowerblue')
+    median_props = dict(linestyle='-', linewidth=2, color='firebrick')
+    flier_props = dict(marker='o', markerfacecolor='dimgray', markersize=6, linestyle='none')
+
+    plt.boxplot(data, labels=labels, patch_artist=False,
+                boxprops=box_props, whiskerprops=whisker_props,
+                capprops=capprops, medianprops=median_props,
+                flierprops=flier_props)
+        
+    plt.title("Cost of Algorithms", fontsize=16)
+    plt.ylabel("Custo (Distância)", fontsize=12)
+    plt.grid(True, linestyle='-', alpha=0.3)
+    
+    # Rotação vertical para as labels do eixo X como na referência
+    plt.xticks(rotation=90)
+    
+    plt.tight_layout()
+    plt.show()
+
+def display_config_comparison(num_cities):
+    """Tabela comparativa de configurações."""
+    t_calls = num_cities * 15000
+    sa_iters = num_cities * 500
+    ga_pop = max(50, min(500, num_cities * 5))
+    configs = {
+        "Parâmetro": ["População", "Iterações/Gerações", "Chamadas Totais/Exec", "Mutação", "Crossover"],
+        "SA": ["1", str(sa_iters), str(sa_iters * 20), "Swap (Neighbor)", "N/A"],
+        "GA": [str(ga_pop), str(t_calls // ga_pop), str(t_calls), "Swap (0.2)", "OX (Order Crossover)"]
+    }
+    print("\n" + "="*60)
+    print("CONFIGURAÇÃO DOS ALGORITMOS NO ESTUDO")
+    print("="*60)
+    print(pd.DataFrame(configs).to_string(index=False))
+    print("="*60 + "\n")
 
 def plot_comparacao_inicial_final(cities_xy, init_data, final_data, algo):
-    """Gera visualização lado a lado (Caminho + Sequência Texto) conforme Fig 3 e 4."""
+    """Gera visualização lado a lado (Caminho + Sequência Texto)."""
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(16, 8))
-    
     for ax, data, title in zip([ax1, ax2], [init_data, final_data], ["Inicial", "Final"]):
         route, dist = data
         coords = cities_xy[route]
-        # Fechar o ciclo para o plot
         full_coords = np.vstack([coords, coords[0]])
         ax.plot(full_coords[:,0], full_coords[:,1], 'o-', color='tab:blue', markersize=4, alpha=0.6)
-        
-        # Adiciona a ordem das cidades no gráfico
         for i, (x_i, y_i) in enumerate(coords):
             ax.text(x_i, y_i, f" {i}", fontsize=8, color='darkred', weight='bold')
-            
         ax.set_title(f"{algo} - Estado {title}\nTour Length: {dist:.3f}", fontsize=14)
-        
-        # Representação do Estado em Texto (Figura 4)
-        # Mostra apenas as primeiras 15 cidades se o dataset for grande
         trunc = 15
         rep_text = " -> ".join(map(str, route[:trunc])) + ("..." if len(route) > trunc else "")
         ax.text(0.5, -0.15, f"Representação do Estado:\n[{rep_text}]", 
                 transform=ax.transAxes, ha='center', fontsize=10, bbox=dict(facecolor='white', alpha=0.5))
-
     plt.tight_layout()
     plt.show()
 
-def plot_convergencia_estatistica(sa_hists, ga_hists, dataset):
-    """Gráfico de Média com Intervalo de Variação usando Seaborn."""
-    df_sa = pd.DataFrame(sa_hists)
-    df_ga = pd.DataFrame(ga_hists)
-    df_total = pd.concat([df_sa, df_ga])
-
-    plt.figure(figsize=(12, 6))
-    if sns is not None:
-        sns.lineplot(data=df_total, x="Calls", y="Fitness", hue="Algorithm", estimator="mean", errorbar="sd")
-        plt.title(f"Convergência Média com Desvio Padrão - {dataset}", fontsize=15)
-    else:
-        # Fallback se seaborn não estiver disponível
-        for label, df in [("SA", df_sa), ("GA", df_ga)]:
-            grouped = df.groupby("Calls")["Fitness"].agg(["mean", "std"])
-            plt.plot(grouped.index, grouped["mean"], label=f"{label} (Média)")
-            plt.fill_between(grouped.index, grouped["mean"] - grouped["std"], 
-                             grouped["mean"] + grouped["std"], alpha=0.2)
-        plt.title(f"Convergência Média (Intervalo std) - {dataset} [Matplotlib Fallback]", fontsize=15)
-        plt.legend()
-
-    plt.xlabel("Chamadas à Função Objetivo", fontsize=12)
-    plt.ylabel("Melhor Fitness", fontsize=12)
-    plt.grid(True, alpha=0.3)
-    plt.show()
-
 def display_summary_comparison(sa_res, ga_res, dataset):
-    """Exibe tabela de comparação estatística conforme describe()."""
+    """Exibe tabela de comparação estatística."""
     df = pd.DataFrame({'Simulated Annealing': sa_res, 'Genetic Algorithm': ga_res})
     desc = df.describe().rename(index={
         'mean': 'Méd', '50%': 'Mediana', 'std': 'Std', 
