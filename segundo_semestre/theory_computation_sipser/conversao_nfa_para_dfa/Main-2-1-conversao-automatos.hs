@@ -5,7 +5,7 @@ import Data.Yaml (FromJSON, ToJSON, decodeFileEither, encodeFile)
 import GHC.Generics (Generic)
 import Data.List (nub, sort, intercalate)
 
--- 1. dados
+-- 1. definição dos dados
 data Transicao = Transicao {
     from   :: String,
     symbol :: String,
@@ -47,11 +47,11 @@ removerEpsilon nfa =
         
         -- loop: para cada estado e símbolo, o novo destino é: Fecho(Destino(Fecho(Estado)))
         novasTrans = [ Transicao s simb (nub $ sort $ pegarFecho destinos listaT)
-                     | s <- states nfa
-                     , simb <- alfabeto
-                     , let fechoOrigem = pegarFecho [s] listaT
-                     , let destinos = concat [ buscarDestinos e simb listaT | e <- fechoOrigem ]
-                     , not (null destinos) ]
+                     | s <- states nfa,
+                     simb <- alfabeto,
+                     let fechoOrigem = pegarFecho [s] listaT,
+                     let destinos = concat [ buscarDestinos e simb listaT | e <- fechoOrigem ],
+                     not (null destinos) ]
         
         -- um estado é final se o epsilon dele contém algum final original
         novosFinais = [ s | s <- states nfa, any (`elem` final_states nfa) (pegarFecho [s] listaT) ]
@@ -96,7 +96,6 @@ construcaoSubconjuntos nfa =
             transitions = totalTrans
         }
 
---runghc Main-2-1-conversao-automatos.hs nfae.yaml
 main :: IO ()
 main = do
     args <- getArgs
