@@ -1,4 +1,4 @@
-# Relatório de Desenvolvimento: Conversor de Autômatos (NFA-$\epsilon \rightarrow$ DFA)
+# Relatório Técnico: Implementação Modular NFA-e $\rightarrow$ NFA $\rightarrow$ DFA
 
 Este relatório descreve o processo de criação do meu conversor de autômatos, desenvolvido para o **Laboratório 01** de Teoria da Computação. A ideia aqui é explicar como saímos de um problema teórico e chegamos em um programa funcional em Haskell.
 
@@ -51,10 +51,16 @@ O arquivo gerado (`dfa.yaml`) pode parecer grande, mas ele faz todo o sentido t�
 - **Determinismo Total:** Se você olhar o arquivo, cada estado tem exatamente uma saída para `a` e uma para `b`. Não há mais dúvida!
 - **Herança de Aceitação:** Todo estado no DFA que "dentro de si" tenha o estado `1` original foi marcado como final. Por isso, estados como `1,3` e `1,2,3` aparecem nos `final_states`.
 
-## 5. Conclusão Didática
+## 5. Conclusão e Nuances do Mestrado
 
-Desenvolver este conversor me ajudou a entender que o DFA nada mais é do que um mapa de todas as possibilidades simultâneas de um NFA. Embora o arquivo final tenha mais linhas, ele é um caminho único e seguro para o computador decidir se aceita ou não uma palavra. Passo a passo, o código Haskell transformou a "mágica" das transições vazias em uma tabela de decisões clara e precisa.
+Em vez de tratar a conversão como uma "caixa preta", o código prova que cada transformação é uma operação independente sobre o modelo formal do autômato, facilitando a verificação de corretude em cada estágio.
+
+**Valores Gerados:**
+- **Iniciais:** O estado inicial do DFA é o conjunto `{initial_state}` do NFA limpo.
+- **Finais:** Aplicamos o critério de interseção ($R \cap F_{NFA} \neq \emptyset$) para definir os estados de aceitação do DFA.
 
 ---
+
 **Desenvolvido por:** Pablo Belmiro
 **Disciplina:** Teoria da Computação (Mestrado)
+**Keywords:** Modularidade, Haskell, Epsilon-Removal, Subset Construction, Sipser N4.
