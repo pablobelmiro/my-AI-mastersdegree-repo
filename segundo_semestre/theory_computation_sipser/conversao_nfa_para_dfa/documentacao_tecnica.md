@@ -10,7 +10,7 @@ De acordo com Sipser, um autômato é uma 5-tupla $(Q, \Sigma, \delta, q_0, F)$.
 
 ### 1.1. O Desafio do Epsilon ($\epsilon$)
 A transição vazia introduz o conceito de **Fecho-Epsilon** ($E(R)$). Para qualquer conjunto de estados $R \subseteq Q$, $E(R)$ é o conjunto de estados alcançáveis a partir de $R$ seguindo apenas transições $\epsilon$.
-- **Na prática:** O código implementa isso como um cálculo de *ponto fixo* na função `pegarFecho`.
+- **Na prática:** O código implementa isso como um cálculo de *ponto fixo* na função `pegarFecho`. No nosso conversor, usamos o cálculo de ponto fixo para descobrir todos os estados alcançáveis por transições vazias ($\epsilon$).
 
 ### 1.2. A Construção de Subconjuntos
 Para converter um NFA em DFA, cada estado do DFA deve corresponder a um elemento do **Conjunto das Partes** de $Q$, ou seja, $\mathcal{P}(Q)$.
