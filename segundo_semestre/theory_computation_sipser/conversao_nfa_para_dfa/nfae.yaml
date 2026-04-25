@@ -1,0 +1,21 @@
+type_: nfae
+alphabet: [a, b]
+states: ["1", "2", "3"]
+initial_state: "1"
+final_states: ["1"]
+transitions:
+  - from: "1"
+    symbol: epsilon
+    to: ["3"]
+  - from: "1"
+    symbol: b
+    to: ["2"]
+  - from: "2"
+    symbol: a
+    to: ["2", "3"]
+  - from: "2"
+    symbol: b
+    to: ["3"]
+  - from: "3"
+    symbol: a
+    to: ["1"]
