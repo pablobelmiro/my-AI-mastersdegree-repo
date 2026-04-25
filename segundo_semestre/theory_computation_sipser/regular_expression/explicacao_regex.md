@@ -4,7 +4,7 @@ Este relatório descreve a **Parte 2** do meu trabalho, onde o desafio foi sair 
 
 ## 1. O Problema Proposto
 
-O objetivo era desenvolver um motor de busca ou gerador de autômatos baseado em expressões regulares. Para isso, utilizei a famosa **Construção de Thompson**, que permite transformar qualquer expressão regular em um NFA-$\epsilon$ equivalente. 
+O objetivo era desenvolver um motor de busca ou gerador de autômatos baseado em expressões regulares. Para isso, foi proposto a **Construção de Thompson** na proposta do problema, essa metodologia permite transformar qualquer expressão regular em um NFA-$\epsilon$ equivalente. 
 
 Como o paradigma funcional facilita a construção de árvores sintáticas (AST), o Haskell foi novamente a ferramenta ideal para mapear essas estruturas.
 
