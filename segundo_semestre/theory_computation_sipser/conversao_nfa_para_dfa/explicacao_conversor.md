@@ -1,4 +1,4 @@
-# Relatório Técnico: Implementação Modular NFA-e$\rightarrow$ NFA $\rightarrow$ DFA
+# Relatório Técnico: Implementação Modular NFA-e $\rightarrow$ NFA $\rightarrow$ DFA
 
 Este documento detalha a implementação do conversor de autômatos desenvolvido em Haskell, estruturado para atender aos requisitos do **Laboratório 01**. A principal evolução desta versão é a separação clara entre a remoção de transições vazias e a construção de subconjuntos.
 
