@@ -62,7 +62,7 @@ let dfa = construcaoSubconjuntos nfa
 
 ## 5. Conclusão e Nuances do Mestrado
 
-Para um aluno de mestrado, esta abordagem modular demonstra uma compreensão superior da **composição de algoritmos**. Em vez de tratar a conversão como uma "caixa preta", o código prova que cada transformação é uma operação independente sobre o modelo formal do autômato, facilitando a verificação de corretude em cada estágio.
+Em vez de tratar a conversão como uma "caixa preta", o código prova que cada transformação é uma operação independente sobre o modelo formal do autômato, facilitando a verificação de corretude em cada estágio.
 
 **Valores Gerados:**
 - **Iniciais:** O estado inicial do DFA é o conjunto `{initial_state}` do NFA limpo.
