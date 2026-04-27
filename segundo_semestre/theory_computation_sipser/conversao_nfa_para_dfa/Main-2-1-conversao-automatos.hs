@@ -5,7 +5,7 @@ import Data.Yaml (FromJSON, ToJSON, decodeFileEither, encodeFile)
 import GHC.Generics (Generic)
 import Data.List (nub, sort, intercalate)
 
--- 1. definição dos dados
+-- 1. definiçao dos dados
 data Transicao = Transicao {
     from   :: String,
     symbol :: String,
@@ -32,7 +32,6 @@ buscarDestinos :: String -> String -> [Transicao] -> [String]
 buscarDestinos estadoProcurado simboloProcurado listaTotal =
     concat [ t_to | Transicao t_from t_sym t_to <- listaTotal, t_from == estadoProcurado, t_sym == simboloProcurado ]
 
--- professor, essa é a minha função de cálculo de ponto fixo, garantindo término da verificação das transições
 pegarFecho :: [String] -> [Transicao] -> [String]
 pegarFecho estados listaT =
     let novos = nub $ estados ++ concat [ buscarDestinos e "epsilon" listaT | e <- estados ]

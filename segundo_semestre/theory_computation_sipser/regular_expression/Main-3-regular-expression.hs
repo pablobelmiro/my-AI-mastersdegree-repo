@@ -110,7 +110,7 @@ thompson (Repetir r) idAt =
 thompson (UmOuMais r) idAt = thompson (Concat r (Repetir r)) idAt
 thompson (Opcional r) idAt = thompson (Alternativa r Vazio) idAt
 
--- 5. simulador do autômato ou reconhecimento das palavras
+-- 5. simulador do automato ou reconhecimento das palavras
 pegarFechoEpsilon :: [String] -> [Transicao] -> [String]
 pegarFechoEpsilon estados listaT =
     let novos = nub $ estados ++ concat [ destinos | Transicao onde simb destinos <- listaT, onde `elem` estados, simb == "epsilon" ]
