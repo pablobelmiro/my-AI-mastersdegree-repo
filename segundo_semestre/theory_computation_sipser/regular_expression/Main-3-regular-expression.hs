@@ -50,9 +50,10 @@ expressao s =
 termo :: String -> (Regex, String)
 termo s =
     let (r1, restos1) = fator s
-    in if not (null restos1) && (isAlphaNum (head restos1) || head restos1 == '(')
-       then let (r2, restos2) = termo restos1 in (Concat r1 r2, restos2)
-       else (r1, restos1)
+    in case restos1 of
+        (c:_) | isAlphaNum c || c == '(' -> 
+            let (r2, restos2) = termo restos1 in (Concat r1 r2, restos2)
+        _ -> (r1, restos1)
 
 fator :: String -> (Regex, String)
 fator s =
