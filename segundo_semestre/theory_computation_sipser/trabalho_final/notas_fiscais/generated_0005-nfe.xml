@@ -1,0 +1,191 @@
+<?xml version='1.0' encoding='utf-8'?>
+<nfeProc xmlns="http://www.portalfiscal.inf.br/nfe" versao="4.00">
+  <NFe xmlns="http://www.portalfiscal.inf.br/nfe">
+    <infNFe versao="4.00" Id="NFe16260526347850000154550028322476121711971340">
+      <ide>
+        <cUF>16</cUF>
+        <cNF>71197134</cNF>
+        <natOp>VENDA DE MERCADORIAS</natOp>
+        <mod>55</mod>
+        <serie>2</serie>
+        <nNF>832247612</nNF>
+        <dhEmi>2025-12-30T11:43:50-03:00</dhEmi>
+        <dhSaiEnt>2026-05-04T03:30:06-03:00</dhSaiEnt>
+        <tpNF>1</tpNF>
+        <idDest>1</idDest>
+        <cMunFG>2933307</cMunFG>
+        <tpImp>1</tpImp>
+        <tpEmis>1</tpEmis>
+        <cDV>0</cDV>
+        <tpAmb>1</tpAmb>
+        <finNFe>1</finNFe>
+        <indFinal>1</indFinal>
+        <indPres>2</indPres>
+        <indIntermed>1</indIntermed>
+        <procEmi>0</procEmi>
+        <verProc>Bling 1.1</verProc>
+      </ide>
+      <emit>
+        <CNPJ>25.803.679/0001-88</CNPJ>
+        <xNome>Pacheco Silva S.A.</xNome>
+        <xFant>da Conceição</xFant>
+        <enderEmit>
+          <xLgr>Avenida Mendonça</xLgr>
+          <nro>7293</nro>
+          <xCpl>9o andar</xCpl>
+          <xBairro>Nossa Senhora Aparecida</xBairro>
+          <cMun>2933307</cMun>
+          <xMun>Santos</xMun>
+          <UF>BA</UF>
+          <CEP>11010575</CEP>
+          <cPais>1058</cPais>
+          <xPais>Brasil</xPais>
+          <fone>UNKNOWN</fone>
+        </enderEmit>
+        <IE>112043163</IE>
+        <IM>3741946</IM>
+        <CNAE>8094060</CNAE>
+        <CRT>3</CRT>
+      </emit>
+      <dest>
+        <CPF>829.416.305-89</CPF>
+        <xNome>Vinícius Sampaio</xNome>
+        <enderDest>
+          <xLgr>Trecho Marina Cassiano</xLgr>
+          <nro>1746</nro>
+          <xBairro>Buritis</xBairro>
+          <cMun>2933307</cMun>
+          <xMun>Feira de Santana</xMun>
+          <UF>BA</UF>
+          <CEP>44001813</CEP>
+          <cPais>1058</cPais>
+          <xPais>Brasil</xPais>
+          <fone>0300 103 6117</fone>
+        </enderDest>
+        <indIEDest>9</indIEDest>
+        <email>olivia95@example.com</email>
+      </dest>
+      <autXML>
+        <CNPJ>13.764.958/0001-09</CNPJ>
+      </autXML>
+      <det nItem="1">
+        <prod>
+          <cProd>VMJ1178</cProd>
+          <cEAN>9773376413606</cEAN>
+          <xProd>A segurança de realizar seus sonhos com toda a tranquilidade</xProd>
+          <NCM>72287564</NCM>
+          <CEST>2818864</CEST>
+          <indEscala>S</indEscala>
+          <CFOP>5102</CFOP>
+          <uCom>UN</uCom>
+          <qCom>17.7841</qCom>
+          <vUnCom>200.03</vUnCom>
+          <vProd>3557.35</vProd>
+          <cEANTrib>0246507085922</cEANTrib>
+          <uTrib>UN</uTrib>
+          <qTrib>17.7841</qTrib>
+          <vUnTrib>200.03</vUnTrib>
+          <indTot>1</indTot>
+          <nItemPed>1</nItemPed>
+        </prod>
+        <imposto>
+          <vTotTrib>1157.56</vTotTrib>
+          <ICMS>
+            <ICMS00>
+              <orig>2</orig>
+              <CST>00</CST>
+              <modBC>3</modBC>
+              <vBC>3557.35</vBC>
+              <pICMS>17.0000</pICMS>
+              <vICMS>604.75</vICMS>
+            </ICMS00>
+          </ICMS>
+          <PIS>
+            <PISAliq>
+              <CST>01</CST>
+              <vBC>3557.35</vBC>
+              <pPIS>7.67</pPIS>
+              <vPIS>272.85</vPIS>
+            </PISAliq>
+          </PIS>
+          <COFINS>
+            <COFINSAliq>
+              <CST>01</CST>
+              <vBC>3557.35</vBC>
+              <pCOFINS>7.87</pCOFINS>
+              <vCOFINS>279.96</vCOFINS>
+            </COFINSAliq>
+          </COFINS>
+        </imposto>
+      </det>
+      <total>
+        <ICMSTot>
+          <vBC>3557.35</vBC>
+          <vICMS>604.75</vICMS>
+          <vICMSDeson>0.00</vICMSDeson>
+          <vFCP>0.00</vFCP>
+          <vBCST>0.00</vBCST>
+          <vST>0.00</vST>
+          <vFCPST>0.00</vFCPST>
+          <vFCPSTRet>0.00</vFCPSTRet>
+          <vProd>3557.35</vProd>
+          <vFrete>12.11</vFrete>
+          <vSeg>0.00</vSeg>
+          <vDesc>0.00</vDesc>
+          <vII>0.00</vII>
+          <vIPI>0.00</vIPI>
+          <vIPIDevol>0.00</vIPIDevol>
+          <vPIS>272.85</vPIS>
+          <vCOFINS>279.96</vCOFINS>
+          <vOutro>0.00</vOutro>
+          <vNF>3569.46</vNF>
+          <vTotTrib>1157.56</vTotTrib>
+        </ICMSTot>
+      </total>
+      <transp>
+        <modFrete>0</modFrete>
+        <transporta>
+          <xNome>Barbosa S/A</xNome>
+        </transporta>
+        <vol>
+          <qVol>5</qVol>
+          <pesoL>34.292</pesoL>
+          <pesoB>16.476</pesoB>
+        </vol>
+      </transp>
+      <cobr>
+        <fat>
+          <nFat>832247612</nFat>
+          <vOrig>3569.46</vOrig>
+          <vDesc>0.00</vDesc>
+          <vLiq>3569.46</vLiq>
+        </fat>
+        <dup>
+          <nDup>753</nDup>
+          <dVenc>2026-05-12</dVenc>
+          <vDup>3569.46</vDup>
+        </dup>
+      </cobr>
+      <pag>
+        <detPag>
+          <indPag>1</indPag>
+          <tPag>04</tPag>
+          <vPag>3569.46</vPag>
+        </detPag>
+      </pag>
+      <infIntermed>
+        <CNPJ>13.764.958/0001-09</CNPJ>
+        <idCadIntTran>736870354</idCadIntTran>
+      </infIntermed>
+      <infAdic>
+        <infCpl>Total aproximado de tributos: R$ 304.38 (26.73%)  Federais R$ 216.36 (19.00%)  Estaduais R$ 88.02 (7.73%). Fonte IBPT.</infCpl>
+      </infAdic>
+      <infRespTec>
+        <CNPJ>13.764.958/0001-09</CNPJ>
+        <xContato>Barbosa S/A</xContato>
+        <email>UNKNOWN</email>
+        <fone>UNKNOWN</fone>
+      </infRespTec>
+    </infNFe>
+  </NFe>
+</nfeProc>

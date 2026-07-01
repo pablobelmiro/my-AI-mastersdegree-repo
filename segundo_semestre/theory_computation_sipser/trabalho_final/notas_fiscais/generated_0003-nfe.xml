@@ -1,0 +1,212 @@
+<?xml version='1.0' encoding='utf-8'?>
+<nfeProc xmlns="http://www.portalfiscal.inf.br/nfe" versao="4.00">
+  <NFe xmlns="http://www.portalfiscal.inf.br/nfe">
+    <infNFe versao="4.00" Id="NFe17260556931420000146550023362704311653331078">
+      <ide>
+        <cUF>17</cUF>
+        <cNF>65333107</cNF>
+        <natOp>Venda de mercadoria</natOp>
+        <mod>55</mod>
+        <serie>2</serie>
+        <nNF>336270431</nNF>
+        <dhEmi>2025-05-22T10:25:50-03:00</dhEmi>
+        <dhSaiEnt>2026-05-03T21:30:06-03:00</dhSaiEnt>
+        <tpNF>1</tpNF>
+        <idDest>2</idDest>
+        <cMunFG>5208707</cMunFG>
+        <tpImp>1</tpImp>
+        <tpEmis>1</tpEmis>
+        <cDV>8</cDV>
+        <tpAmb>1</tpAmb>
+        <finNFe>1</finNFe>
+        <indFinal>1</indFinal>
+        <indPres>2</indPres>
+        <indIntermed>0</indIntermed>
+        <procEmi>0</procEmi>
+        <verProc>Bling 1.1</verProc>
+      </ide>
+      <emit>
+        <CNPJ>72.981.450/0001-13</CNPJ>
+        <xNome>Viana Siqueira e Filhos</xNome>
+        <xFant>Martins</xFant>
+        <enderEmit>
+          <xLgr>Alameda Marques</xLgr>
+          <nro>4750</nro>
+          <xCpl>2o andar</xCpl>
+          <xBairro>São Gabriel</xBairro>
+          <cMun>5208707</cMun>
+          <xMun>Brasilia</xMun>
+          <UF>GO</UF>
+          <CEP>70010193</CEP>
+          <cPais>1058</cPais>
+          <xPais>Brasil</xPais>
+          <fone>UNKNOWN</fone>
+        </enderEmit>
+        <IE>473742821</IE>
+        <CRT>3</CRT>
+      </emit>
+      <dest>
+        <CPF>286.710.549-85</CPF>
+        <xNome>Dra. Amanda Rocha</xNome>
+        <enderDest>
+          <xLgr>Passarela Paulo Fogaça</xLgr>
+          <nro>1428</nro>
+          <xCpl>Casa 18</xCpl>
+          <xBairro>Bom Jesus</xBairro>
+          <cMun>5208707</cMun>
+          <xMun>Rio de Janeiro</xMun>
+          <UF>GO</UF>
+          <CEP>20010112</CEP>
+          <cPais>1058</cPais>
+          <xPais>Brasil</xPais>
+          <fone>+55 (021) 5649-8481</fone>
+        </enderDest>
+        <indIEDest>9</indIEDest>
+        <email>yviana@example.org</email>
+      </dest>
+      <autXML>
+        <CNPJ>72.153.964/0001-80</CNPJ>
+      </autXML>
+      <autXML>
+        <CNPJ>72.153.964/0001-80</CNPJ>
+      </autXML>
+      <autXML>
+        <CNPJ>72.153.964/0001-80</CNPJ>
+      </autXML>
+      <det nItem="1">
+        <prod>
+          <cProd>UHX6364</cProd>
+          <cEAN>6291010095474</cEAN>
+          <xProd>O prazer de conseguir com força total</xProd>
+          <NCM>19681054</NCM>
+          <CEST>5153941</CEST>
+          <indEscala>S</indEscala>
+          <CFOP>6108</CFOP>
+          <uCom>UN</uCom>
+          <qCom>4.9591</qCom>
+          <vUnCom>273.03</vUnCom>
+          <vProd>1353.98</vProd>
+          <cEANTrib>1173203950850</cEANTrib>
+          <uTrib>UN</uTrib>
+          <qTrib>4.9591</qTrib>
+          <vUnTrib>273.03</vUnTrib>
+          <vFrete>4387.64</vFrete>
+          <vDesc>2889.51</vDesc>
+          <indTot>1</indTot>
+          <xPed>X54Q45M</xPed>
+          <nItemPed>1</nItemPed>
+        </prod>
+        <imposto>
+          <vTotTrib>287.72</vTotTrib>
+          <ICMS>
+            <ICMS00>
+              <orig>0</orig>
+              <CST>00</CST>
+              <modBC>0</modBC>
+              <vBC>1353.98</vBC>
+              <pICMS>12.0000</pICMS>
+              <vICMS>162.48</vICMS>
+            </ICMS00>
+          </ICMS>
+          <PIS>
+            <PISNT>
+              <CST>07</CST>
+            </PISNT>
+          </PIS>
+          <COFINS>
+            <COFINSNT>
+              <CST>07</CST>
+            </COFINSNT>
+          </COFINS>
+          <ICMSUFDest>
+            <vBCUFDest>1353.98</vBCUFDest>
+            <vBCFCPUFDest>1353.98</vBCFCPUFDest>
+            <pFCPUFDest>9.31</pFCPUFDest>
+            <pICMSUFDest>11.77</pICMSUFDest>
+            <pICMSInter>12.00</pICMSInter>
+            <pICMSInterPart>100.0000</pICMSInterPart>
+            <vFCPUFDest>126.06</vFCPUFDest>
+            <vICMSUFDest>-3.11</vICMSUFDest>
+            <vICMSUFRemet>0.00</vICMSUFRemet>
+          </ICMSUFDest>
+        </imposto>
+      </det>
+      <total>
+        <ICMSTot>
+          <vBC>1353.98</vBC>
+          <vICMS>162.48</vICMS>
+          <vICMSDeson>0.00</vICMSDeson>
+          <vFCPUFDest>126.06</vFCPUFDest>
+          <vICMSUFDest>-3.11</vICMSUFDest>
+          <vICMSUFRemet>0.00</vICMSUFRemet>
+          <vFCP>0.00</vFCP>
+          <vBCST>0.00</vBCST>
+          <vST>0.00</vST>
+          <vFCPST>0.00</vFCPST>
+          <vFCPSTRet>0.00</vFCPSTRet>
+          <vProd>1353.98</vProd>
+          <vFrete>35.87</vFrete>
+          <vSeg>0.00</vSeg>
+          <vDesc>0.00</vDesc>
+          <vII>0.00</vII>
+          <vIPI>0.00</vIPI>
+          <vIPIDevol>0.00</vIPIDevol>
+          <vPIS>22.34</vPIS>
+          <vCOFINS>102.90</vCOFINS>
+          <vOutro>0.00</vOutro>
+          <vNF>1389.85</vNF>
+          <vTotTrib>287.72</vTotTrib>
+        </ICMSTot>
+      </total>
+      <transp>
+        <modFrete>0</modFrete>
+        <transporta>
+          <CNPJ>72.153.964/0001-80</CNPJ>
+          <xNome>Pacheco Monteiro S.A.</xNome>
+          <IE>259273973</IE>
+          <xEnder>Setor Murilo Novaes</xEnder>
+          <xMun>Goiania</xMun>
+          <UF>GO</UF>
+        </transporta>
+        <vol>
+          <qVol>3</qVol>
+          <esp>Pacote(s)</esp>
+          <pesoL>14.449</pesoL>
+          <pesoB>8.462</pesoB>
+        </vol>
+      </transp>
+      <cobr>
+        <fat>
+          <nFat>336270431</nFat>
+          <vOrig>1389.85</vOrig>
+          <vDesc>0.00</vDesc>
+          <vLiq>1389.85</vLiq>
+        </fat>
+        <dup>
+          <nDup>542</nDup>
+          <dVenc>2026-06-08</dVenc>
+          <vDup>1389.85</vDup>
+        </dup>
+      </cobr>
+      <pag>
+        <detPag>
+          <indPag>0</indPag>
+          <tPag>05</tPag>
+          <vPag>1389.85</vPag>
+        </detPag>
+      </pag>
+      <infAdic>
+        <infCpl>Total aproximado de tributos: R$ 159.98 (24.68%)  Federais R$ 83.43 (12.87%)  Estaduais R$ 76.55 (11.81%). Fonte IBPT.</infCpl>
+      </infAdic>
+      <compra>
+        <xPed>X54Q45M</xPed>
+      </compra>
+      <infRespTec>
+        <CNPJ>72.153.964/0001-80</CNPJ>
+        <xContato>Pacheco Monteiro S.A.</xContato>
+        <email>UNKNOWN</email>
+        <fone>UNKNOWN</fone>
+      </infRespTec>
+    </infNFe>
+  </NFe>
+</nfeProc>

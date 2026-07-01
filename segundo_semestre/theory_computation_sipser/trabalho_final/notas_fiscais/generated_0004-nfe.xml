@@ -1,0 +1,191 @@
+<?xml version='1.0' encoding='utf-8'?>
+<nfeProc xmlns="http://www.portalfiscal.inf.br/nfe" versao="4.00">
+  <NFe xmlns="http://www.portalfiscal.inf.br/nfe">
+    <infNFe versao="4.00" Id="NFe28260583240697000103550031104721971578201796">
+      <ide>
+        <cUF>28</cUF>
+        <cNF>57820179</cNF>
+        <natOp>VENDA DE MERCADORIAS</natOp>
+        <mod>55</mod>
+        <serie>3</serie>
+        <nNF>110472197</nNF>
+        <dhEmi>2025-12-30T11:43:50-03:00</dhEmi>
+        <dhSaiEnt>2026-05-05T11:30:06-03:00</dhSaiEnt>
+        <tpNF>1</tpNF>
+        <idDest>1</idDest>
+        <cMunFG>4218707</cMunFG>
+        <tpImp>1</tpImp>
+        <tpEmis>1</tpEmis>
+        <cDV>6</cDV>
+        <tpAmb>1</tpAmb>
+        <finNFe>1</finNFe>
+        <indFinal>1</indFinal>
+        <indPres>2</indPres>
+        <indIntermed>1</indIntermed>
+        <procEmi>0</procEmi>
+        <verProc>Bling 1.1</verProc>
+      </ide>
+      <emit>
+        <CNPJ>67.391.054/0001-04</CNPJ>
+        <xNome>da Paz Moura - EI</xNome>
+        <xFant>da Rocha</xFant>
+        <enderEmit>
+          <xLgr>Vereda Ferreira</xLgr>
+          <nro>3141</nro>
+          <xCpl>7o andar</xCpl>
+          <xBairro>Novo Ouro Preto</xBairro>
+          <cMun>4218707</cMun>
+          <xMun>Teresina</xMun>
+          <UF>SC</UF>
+          <CEP>64010739</CEP>
+          <cPais>1058</cPais>
+          <xPais>Brasil</xPais>
+          <fone>UNKNOWN</fone>
+        </enderEmit>
+        <IE>221422442</IE>
+        <IM>8040093</IM>
+        <CNAE>7081612</CNAE>
+        <CRT>3</CRT>
+      </emit>
+      <dest>
+        <CPF>824.103.596-98</CPF>
+        <xNome>Luísa Pastor</xNome>
+        <enderDest>
+          <xLgr>Aeroporto Sales</xLgr>
+          <nro>9522</nro>
+          <xBairro>Vila União</xBairro>
+          <cMun>4218707</cMun>
+          <xMun>Guarulhos</xMun>
+          <UF>SC</UF>
+          <CEP>07010434</CEP>
+          <cPais>1058</cPais>
+          <xPais>Brasil</xPais>
+          <fone>+55 (031) 9744 7222</fone>
+        </enderDest>
+        <indIEDest>9</indIEDest>
+        <email>costanicolas@example.com</email>
+      </dest>
+      <autXML>
+        <CNPJ>67.453.082/0001-09</CNPJ>
+      </autXML>
+      <det nItem="1">
+        <prod>
+          <cProd>ROI5163</cProd>
+          <cEAN>8533642651504</cEAN>
+          <xProd>A vantagem de inovar mais facilmente</xProd>
+          <NCM>38854010</NCM>
+          <CEST>6611392</CEST>
+          <indEscala>S</indEscala>
+          <CFOP>5102</CFOP>
+          <uCom>UN</uCom>
+          <qCom>12.2055</qCom>
+          <vUnCom>160.61</vUnCom>
+          <vProd>1960.33</vProd>
+          <cEANTrib>8862589508689</cEANTrib>
+          <uTrib>UN</uTrib>
+          <qTrib>12.2055</qTrib>
+          <vUnTrib>160.61</vUnTrib>
+          <indTot>1</indTot>
+          <nItemPed>1</nItemPed>
+        </prod>
+        <imposto>
+          <vTotTrib>554.97</vTotTrib>
+          <ICMS>
+            <ICMS00>
+              <orig>2</orig>
+              <CST>00</CST>
+              <modBC>3</modBC>
+              <vBC>1960.33</vBC>
+              <pICMS>17.0000</pICMS>
+              <vICMS>333.26</vICMS>
+            </ICMS00>
+          </ICMS>
+          <PIS>
+            <PISAliq>
+              <CST>01</CST>
+              <vBC>1960.33</vBC>
+              <pPIS>7.39</pPIS>
+              <vPIS>144.87</vPIS>
+            </PISAliq>
+          </PIS>
+          <COFINS>
+            <COFINSAliq>
+              <CST>01</CST>
+              <vBC>1960.33</vBC>
+              <pCOFINS>3.92</pCOFINS>
+              <vCOFINS>76.84</vCOFINS>
+            </COFINSAliq>
+          </COFINS>
+        </imposto>
+      </det>
+      <total>
+        <ICMSTot>
+          <vBC>1960.33</vBC>
+          <vICMS>333.26</vICMS>
+          <vICMSDeson>0.00</vICMSDeson>
+          <vFCP>0.00</vFCP>
+          <vBCST>0.00</vBCST>
+          <vST>0.00</vST>
+          <vFCPST>0.00</vFCPST>
+          <vFCPSTRet>0.00</vFCPSTRet>
+          <vProd>1960.33</vProd>
+          <vFrete>0.00</vFrete>
+          <vSeg>0.00</vSeg>
+          <vDesc>0.00</vDesc>
+          <vII>0.00</vII>
+          <vIPI>0.00</vIPI>
+          <vIPIDevol>0.00</vIPIDevol>
+          <vPIS>144.87</vPIS>
+          <vCOFINS>76.84</vCOFINS>
+          <vOutro>0.00</vOutro>
+          <vNF>1960.33</vNF>
+          <vTotTrib>554.97</vTotTrib>
+        </ICMSTot>
+      </total>
+      <transp>
+        <modFrete>0</modFrete>
+        <transporta>
+          <xNome>Abreu</xNome>
+        </transporta>
+        <vol>
+          <qVol>3</qVol>
+          <pesoL>12.409</pesoL>
+          <pesoB>45.154</pesoB>
+        </vol>
+      </transp>
+      <cobr>
+        <fat>
+          <nFat>110472197</nFat>
+          <vOrig>1960.33</vOrig>
+          <vDesc>0.00</vDesc>
+          <vLiq>1960.33</vLiq>
+        </fat>
+        <dup>
+          <nDup>427</nDup>
+          <dVenc>2026-05-10</dVenc>
+          <vDup>1960.33</vDup>
+        </dup>
+      </cobr>
+      <pag>
+        <detPag>
+          <indPag>1</indPag>
+          <tPag>11</tPag>
+          <vPag>1960.33</vPag>
+        </detPag>
+      </pag>
+      <infIntermed>
+        <CNPJ>67.453.082/0001-09</CNPJ>
+        <idCadIntTran>373905199</idCadIntTran>
+      </infIntermed>
+      <infAdic>
+        <infCpl>Total aproximado de tributos: R$ 78.68 (18.67%)  Federais R$ 61.06 (14.49%)  Estaduais R$ 17.62 (4.18%). Fonte IBPT.</infCpl>
+      </infAdic>
+      <infRespTec>
+        <CNPJ>67.453.082/0001-09</CNPJ>
+        <xContato>Abreu</xContato>
+        <email>UNKNOWN</email>
+        <fone>UNKNOWN</fone>
+      </infRespTec>
+    </infNFe>
+  </NFe>
+</nfeProc>
